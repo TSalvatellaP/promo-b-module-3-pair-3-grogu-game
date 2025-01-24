@@ -2,6 +2,13 @@ import "../styles/App.scss"
 
 
 function App() {
+  const groguPosition = [];
+  const frog = [];
+  const cookie = [];
+  const egg = [];
+  const dice = Math.ceil(Math.random() * 4);
+  const gameStatus = '';
+
   return (
 <>
     <div className="page">
