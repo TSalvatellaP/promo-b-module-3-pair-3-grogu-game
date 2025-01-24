@@ -11,3 +11,12 @@
 6. Reiniciar el Juego: Proporciona una manera de reiniciar el juego a su estado inicial.
 
 7. Interfaz de Usuario: Asegúrate de que la interfaz de usuario refleje el estado actual del juego, mostrando la posición de Grogu, las mercancías restantes, y el resultado del dado.
+
+
+-----------------
+
+- APP
+    - Header
+    - Board
+        - Grogu
+    
