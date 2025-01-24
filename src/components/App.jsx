@@ -1,28 +1,25 @@
 import "../styles/App.scss"
-
+import Header from "./Header";
+import Board from "./Board";
 
 function App() {
+  const groguPosition = [];
+  const frog = [];
+  const cookie = [];
+  const egg = [];
+  const dice = Math.ceil(Math.random() * 4);
+  const gameStatus = '';
+
   return (
-<>
+    <>
     <div className="page">
-
-    <header>
-      <h1>¡Cuidado con Grogu!</h1>
-    </header>
+      <Header/>
     <main className="page">
-      <section className="board">
-        <div className="cell"><div className="grogu">👣</div></div>
-        <div className="cell"></div>
-        <div className="cell"></div>
-        <div className="cell"></div>
-        <div className="cell"></div>
-        <div className="cell"></div>
-        <div className="cell"></div>
-      </section>
+      <Board/>
 
-      <section>
+      <section className="sectionDice">
         <button className="dice">Lanzar Dado</button>
-        <div className="game-status">En curso</div>
+        <div className="game-status">{gameStatus}</div>
       </section>
 
       <section className="goods-container">
@@ -40,6 +37,7 @@ function App() {
         <div className="goods-item">🐸</div>
         <div className="goods-item">🐸</div>
       </section>
+
       <section>
         <button className="restart-button">Reiniciar Juego</button>
       </section>
