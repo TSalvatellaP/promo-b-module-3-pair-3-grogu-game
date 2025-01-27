@@ -9,6 +9,7 @@ function App() {
   const egg = [];
   let gameStatus = '';
 
+  // esta función se queda en APP y se lleva al componente dice por props y luego lifting para recoger el estado
   function rollDice() {
     const dice = Math.ceil(Math.random() * 4)
     if(dice === 4){
@@ -16,6 +17,7 @@ function App() {
       gameStatus = "¡Grogu ha avanzado una casilla! 😱"
     } else {
       // si es 1, 2 o 3, una mercancía se eliminará de su lista
+      // asignar cada numero a una mercancia y quitar una si el array es mayor que 0
       gameStatus = "Se ha descargado una mercancía"
     }
     console.log(dice, gameStatus);
