@@ -31,7 +31,7 @@ function App() {
       if(dice === 4){
         setGroguPosition (groguPosition + 1);
       // se mueve grogu
-      setGameStatus ("¡Grogu ha avanzado una casilla! 😱");
+      setGameStatus (`${nameStatus} ¡Grogu ha avanzado una casilla! 😱`);
     } else if (dice === 3 && frogs.length > 0){
       setFrog ( frogs.slice (1));
       
