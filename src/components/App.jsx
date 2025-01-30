@@ -2,6 +2,7 @@ import "../styles/App.scss"
 import {useState} from 'react';
 import Header from "./Header";
 import Board from "./Board";
+import Form from "./Form";
 
 function App() {
   // 1. cambiar las cinco a variables de estado (nombre, función, useState)
@@ -20,6 +21,7 @@ function App() {
   const [cookies, setCookie] = useState(["🍪", "🍪", "🍪"]);
   const [eggs, setEgg] = useState(["🥚","🥚","🥚",]);
   let [gameStatus, setGameStatus] = useState("Lanza el dado");
+  let [nameStatus, setNameStatus] = useState ("");
 
   // esta función se queda en APP y se lleva al componente dice por props y luego lifting para recoger el estado
   function rollDice(event) {
@@ -35,16 +37,16 @@ function App() {
       
       // si es 1, 2 o 3, una mercancía se eliminará de su lista
       // asignar cada numero a una mercancia y quitar una si el array es mayor que 0
-      setGameStatus ("Se ha descargado una ranita");
+      setGameStatus (`${nameStatus} Se ha descargado una ranita`);
     } else if (dice === 2 && cookies.length > 0){
       setCookie(cookies.slice (1));
-      setGameStatus ("Se ha descargado una galleta");
+      setGameStatus (`${nameStatus} Se ha descargado una galleta`);
     
     }else if (dice === 1 && eggs.length > 0){
       setEgg (eggs.slice (1));
-      setGameStatus ("Se ha descargado un huevo");
+      setGameStatus (`${nameStatus} Se ha descargado un huevo`);
     } else {
-      setGameStatus ("Tira de nuevo el dado");
+      setGameStatus (`${nameStatus} Tira de nuevo el dado`);
     }
   }
 
@@ -54,7 +56,8 @@ function App() {
     <div className="page">
       <Header/>
     <main className="page">
-      <Board groguPosition={groguPosition}/>
+      <Form setNameStatus = {setNameStatus}/>
+      <Board groguPosition = {groguPosition}/>
 
       <section className="sectionDice">
         <button className="dice" onClick={rollDice}>Lanzar Dado</button>
