@@ -25,24 +25,26 @@ function App() {
   function rollDice(event) {
     event.preventDefault();
     const dice = Math.ceil(Math.random() * 4)
+    console.log(dice);
       if(dice === 4){
-        setGroguPosition = groguPosition + 1;
+        setGroguPosition (groguPosition + 1);
       // se mueve grogu
-      gameStatus = "¡Grogu ha avanzado una casilla! 😱"
+      setGameStatus ("¡Grogu ha avanzado una casilla! 😱");
     } else if (dice === 3 && frogs.length > 0){
-      frogs.splice (0,1);
+      setFrog ( frogs.slice (1));
+      
       // si es 1, 2 o 3, una mercancía se eliminará de su lista
       // asignar cada numero a una mercancia y quitar una si el array es mayor que 0
-      gameStatus = "Se ha descargado una ranita"
+      setGameStatus ("Se ha descargado una ranita");
     } else if (dice === 2 && cookies.length > 0){
-      cookies.splice (0,1);
-      gameStatus = "Se ha descargado una galleta"
+      setCookie(cookies.slice (1));
+      setGameStatus ("Se ha descargado una galleta");
     
     }else if (dice === 1 && eggs.length > 0){
-    eggs.splice (0,1);
-    gameStatus = "Se ha descargado un huevo"
+      setEgg (eggs.slice (1));
+      setGameStatus ("Se ha descargado un huevo");
     } else {
-      gameStatus = "Tira de nuevo el dado"
+      setGameStatus ("Tira de nuevo el dado");
     }
   }
 
@@ -55,8 +57,8 @@ function App() {
       <Board groguPosition={groguPosition}/>
 
       <section className="sectionDice">
-        <button className="dice" onClick={rollDice()}>Lanzar Dado</button>
-        <div className="game-status">{setGameStatus}</div>
+        <button className="dice" onClick={rollDice}>Lanzar Dado</button>
+        <div className="game-status">{gameStatus}</div>
       </section>
 
       <section className="goods-container">
