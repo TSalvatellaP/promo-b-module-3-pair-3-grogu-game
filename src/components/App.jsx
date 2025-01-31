@@ -1,5 +1,5 @@
 import "../styles/App.scss"
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Header from "./Header";
 import Board from "./Board";
 import Form from "./Form";
@@ -22,6 +22,17 @@ function App() {
   const [eggs, setEgg] = useState(["🥚","🥚","🥚",]);
   let [gameStatus, setGameStatus] = useState("Lanza el dado");
   let [nameStatus, setNameStatus] = useState ("");
+
+  // le decimos que lea el valor de las variables de estado y que cuando tengan cierto valor lance los mensajes de ganar o perder
+  // useEffect siempre se usa con variables de estado
+  useEffect(() => {
+    if(groguPosition >= 6) {
+      setGameStatus('¡Has perdido el juego! Grogu ha llegado al final.')
+    } else if(frogs.length === 0 && cookies.length === 0 && eggs.length === 0 && groguPosition < 6) {
+      setGameStatus('¡Has ganado el juego!')
+    }
+  }, [groguPosition, frogs, cookies, eggs]); // en este array le decimos las variables de estado que tiene que vigilar. Se ejecuta useEffect cuando cambie su valor
+
 
   // esta función se queda en APP y se lleva al componente dice por props y luego lifting para recoger el estado
   function rollDice(event) {
