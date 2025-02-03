@@ -1,8 +1,10 @@
 import "../styles/App.scss"
 import {useState, useEffect} from 'react';
 import Header from "./Header";
-import Board from "./Board";
-import Form from "./Form";
+import Footer from "./Footer";
+import Instructions from "./Instructions"
+import {Route, Routes} from "react-router-dom";
+import Game from "./Game";
 
 function App() {
   // 1. cambiar las cinco a variables de estado (nombre, función, useState)
@@ -67,34 +69,12 @@ function App() {
     <div className="page">
       <Header/>
     <main className="page">
-      <Form setNameStatus = {setNameStatus}/>
-      <Board groguPosition = {groguPosition}/>
-
-      <section className="sectionDice">
-        <button className="dice" onClick={rollDice}>Lanzar Dado</button>
-        <div className="game-status">{gameStatus}</div>
-      </section>
-
-      <section className="goods-container">
-        <div className="goods-item">{cookies[0]}</div>
-        <div className="goods-item">{cookies[1]}</div>
-        <div className="goods-item">{cookies[2]}</div>
-      </section>
-      <section className="goods-container">
-        <div className="goods-item">{eggs[0]}</div>
-        <div className="goods-item">{eggs[1]}</div>
-        <div className="goods-item">{eggs[2]}</div>
-      </section>
-      <section className="goods-container">
-        <div className="goods-item">{frogs[0]}</div>
-        <div className="goods-item">{frogs[1]}</div>
-        <div className="goods-item">{frogs[2]}</div>
-      </section>
-
-      <section>
-        <button className="restart-button">Reiniciar Juego</button>
-      </section>
+      <Routes>
+        <Route path="/instructions" element = {<Instructions/>} />
+        <Route path="/game" element = {<Game setNameStatus = {setNameStatus} groguPosition = {groguPosition} rollDice = {rollDice} gameStatus = {gameStatus} cookies ={cookies} eggs = {eggs} frogs ={frogs} />}/>
+      </Routes>
     </main>
+    <Footer/>
     </div>
     </>
   )
