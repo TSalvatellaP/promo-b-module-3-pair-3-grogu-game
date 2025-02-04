@@ -7,7 +7,9 @@ function Footer() {
   <nav>
     <ul>
       <li className="footer__menu-item">
-        <a className="footer__menu-link" href="#/">A jugar</a>
+        <NavLink className="footer__menu-link active"  to ="/game">
+        A jugar
+        </NavLink>
       </li>
       <li className="footer__menu-item">
         <NavLink className="footer__menu-link active"  to ="/instructions">

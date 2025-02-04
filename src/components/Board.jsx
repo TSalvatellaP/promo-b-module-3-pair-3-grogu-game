@@ -1,4 +1,5 @@
 import "../styles/Board.scss"
+import PropTypes from "prop-types";
 import Grogu from "./Grogu";
 
 function Board({groguPosition}) {
@@ -16,6 +17,11 @@ function Board({groguPosition}) {
       {listCells}
       </section>
   )
+}
+
+Board.propTypes = {
+  groguPosition: PropTypes.number,
+
 }
 
 export default Board

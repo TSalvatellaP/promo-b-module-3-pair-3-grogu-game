@@ -7,16 +7,6 @@ import {Route, Routes} from "react-router-dom";
 import Game from "./Game";
 
 function App() {
-  // 1. cambiar las cinco a variables de estado (nombre, función, useState)
-  // 2. la función de roll dice, ajustar con las variables de estado
-  // 3. el groguPosition no es un array. El valor inicial es 0
-  // el board recibe groguPosition con props
-
-  // const [groguPosition, setGroguPosition] = 0; // 0 a 6
-  // const frog = ["🐸", "🐸", "🐸"];
-  // const cookie = ["🍪", "🍪", "🍪"];
-  // const egg = ["🥚","🥚","🥚",];
-  // let gameStatus = '';
 
   let [groguPosition, setGroguPosition] = useState(0);
   const [frogs, setFrog] = useState(["🐸", "🐸", "🐸"]);
@@ -24,14 +14,29 @@ function App() {
   const [eggs, setEgg] = useState(["🥚","🥚","🥚",]);
   let [gameStatus, setGameStatus] = useState("Lanza el dado");
   let [nameStatus, setNameStatus] = useState ("");
+  const [hidden, setHidden] = useState(false);
+
+  const resetFunctions = {
+    setGroguPosition,
+    setFrog,
+    setCookie,
+    setEgg,
+    setGameStatus,
+    setNameStatus,
+    setHidden
+  }
+
+
 
   // le decimos que lea el valor de las variables de estado y que cuando tengan cierto valor lance los mensajes de ganar o perder
   // useEffect siempre se usa con variables de estado
   useEffect(() => {
     if(groguPosition >= 6) {
       setGameStatus('¡Has perdido el juego! Grogu ha llegado al final.')
+      setHidden(true);
     } else if(frogs.length === 0 && cookies.length === 0 && eggs.length === 0 && groguPosition < 6) {
       setGameStatus('¡Has ganado el juego!')
+      setHidden(true);
     }
   }, [groguPosition, frogs, cookies, eggs]); // en este array le decimos las variables de estado que tiene que vigilar. Se ejecuta useEffect cuando cambie su valor
 
@@ -71,7 +76,7 @@ function App() {
     <main className="page">
       <Routes>
         <Route path="/instructions" element = {<Instructions/>} />
-        <Route path="/game" element = {<Game setNameStatus = {setNameStatus} groguPosition = {groguPosition} rollDice = {rollDice} gameStatus = {gameStatus} cookies ={cookies} eggs = {eggs} frogs ={frogs} />}/>
+        <Route path="/game" element = {<Game setNameStatus = {setNameStatus} groguPosition = {groguPosition} rollDice = {rollDice} gameStatus = {gameStatus} cookies ={cookies} eggs = {eggs} frogs ={frogs} hidden={hidden} resetFunctions={resetFunctions}/>}/>
       </Routes>
     </main>
     <Footer/>
